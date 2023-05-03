@@ -17,7 +17,7 @@ const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/all/rooms").then((response) => {
+    axios.get(`${baseUrl}/all/rooms`).then((response) => {
       setRooms(response.data);
     });
   }, []);

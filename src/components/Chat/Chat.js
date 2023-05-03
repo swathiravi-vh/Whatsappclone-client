@@ -12,6 +12,8 @@ import { useStateValue } from "../ContextApi/StateProvider";
 import { useParams } from "react-router-dom";
 import Pusher from "pusher-js";
 
+const baseUrl = "https://whatsappclone-server.onrender.com/";
+
 const Chat = () => {
   const [seed, setSeed] = useState("");
   const [input, setInput] = useState("");
@@ -23,11 +25,11 @@ const Chat = () => {
 
   useEffect(() => {
     if (roomId) {
-      axios.get(`http://localhost:5000/room/${roomId}`).then((response) => {
+      axios.get(`${baseUrl}/room/${roomId}`).then((response) => {
         setRoomName(response.data.name);
         setUpdatedAt(response.data.updatedAt);
       });
-      axios.get(`http://localhost:5000/messages/${roomId}`).then((response) => {
+      axios.get(`${baseUrl}/messages/${roomId}`).then((response) => {
         setMessages(response.data);
       });
     }
@@ -53,7 +55,7 @@ const Chat = () => {
     if (!input) {
       return;
     }
-    await axios.post("http://localhost:5000/messages/new", {
+    await axios.post(`${baseUrl}/messages/new`, {
       message: input,
       name: user.displayName,
       timestamp: new Date(),
