@@ -5,6 +5,7 @@ import { useStateValue } from "./components/ContextApi/StateProvider";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Chat from "./components/Chat/Chat";
 import Sidebar from "./components/Sidebar/Sidebar";
+import axios from "./axios";
 
 const App = () => {
   const [{ user }] = useStateValue();

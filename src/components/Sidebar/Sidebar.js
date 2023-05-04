@@ -9,7 +9,7 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import SidebarChat from "../SidebarChat/SidebarChat";
-import axios from "axios";
+import axios from "../../axios";
 import Pusher from "pusher-js";
 
 const Sidebar = () => {
@@ -17,7 +17,7 @@ const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    axios.get(`${baseUrl}/all/rooms`).then((response) => {
+    axios.get(`/all/rooms`).then((response) => {
       setRooms(response.data);
     });
   }, []);

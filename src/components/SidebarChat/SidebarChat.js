@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SidebarChat.css";
 import { Avatar } from "@mui/material";
-import axios from "axios";
+import axios from "../../axios";
 import { Link } from "react-router-dom";
 
 const SidebarChat = ({ addNewChat, name, id }) => {
@@ -15,7 +15,7 @@ const SidebarChat = ({ addNewChat, name, id }) => {
     const roomName = prompt("please enter name for the group");
     if (roomName) {
       try {
-        await axios.post(`${baseUrl}/group/create`, {
+        await axios.post("/group/create", {
           groupName: roomName,
         });
       } catch (error) {

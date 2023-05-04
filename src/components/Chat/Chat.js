@@ -7,12 +7,10 @@ import {
   MoreVert,
   SearchOutlined,
 } from "@mui/icons-material";
-import axios from "axios";
+import axios from "../../axios";
 import { useStateValue } from "../ContextApi/StateProvider";
 import { useParams } from "react-router-dom";
 import Pusher from "pusher-js";
-
-const baseUrl = "https://whatsappclone-server.onrender.com/";
 
 const Chat = () => {
   const [seed, setSeed] = useState("");
@@ -25,11 +23,11 @@ const Chat = () => {
 
   useEffect(() => {
     if (roomId) {
-      axios.get(`${baseUrl}/room/${roomId}`).then((response) => {
+      axios.get(`/room/${roomId}`).then((response) => {
         setRoomName(response.data.name);
         setUpdatedAt(response.data.updatedAt);
       });
-      axios.get(`${baseUrl}/messages/${roomId}`).then((response) => {
+      axios.get(`/messages/${roomId}`).then((response) => {
         setMessages(response.data);
       });
     }
@@ -55,7 +53,7 @@ const Chat = () => {
     if (!input) {
       return;
     }
-    await axios.post(`${baseUrl}/messages/new`, {
+    await axios.post(`/messages/new`, {
       message: input,
       name: user.displayName,
       timestamp: new Date(),
